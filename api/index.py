@@ -1,4 +1,6 @@
 import io
+import os
+from pathlib import Path
 
 import pdfplumber
 from flask import Flask, request, send_file, render_template_string
@@ -6,10 +8,12 @@ from reportlab.lib.units import inch
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
-
+BASE_DIR = Path(__file__).resolve().parent
+# When bundled, Vercel copies included assets alongside the function; walk up to repo root if needed
+FONT_DIR = (BASE_DIR / ".." / "asset" / "fonts").resolve()
 app = Flask(__name__)
-pdfmetrics.registerFont(TTFont("Garamond", "../asset/fonts/Garamond.ttf"))
-pdfmetrics.registerFont(TTFont("Garamond-Bold", "../asset/fonts/Garamonb.ttf"))
+pdfmetrics.registerFont(TTFont("Garamond", str(FONT_DIR / "Garamond.ttf")))
+pdfmetrics.registerFont(TTFont("Garamond-Bold", str(FONT_DIR / "Garamonb.ttf")))
 
 
 # Function to extract "Ship To" addresses only
