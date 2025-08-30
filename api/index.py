@@ -8,8 +8,8 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
 
 app = Flask(__name__)
-pdfmetrics.registerFont(TTFont("Garamond", "./asset/fonts/Garamond.ttf"))
-pdfmetrics.registerFont(TTFont("Garamond-Bold", "./asset/fonts/Garamonb.ttf"))
+pdfmetrics.registerFont(TTFont("Garamond", "../asset/fonts/Garamond.ttf"))
+pdfmetrics.registerFont(TTFont("Garamond-Bold", "../asset/fonts/Garamonb.ttf"))
 
 
 # Function to extract "Ship To" addresses only
